@@ -1,0 +1,14 @@
+/*This CSS file adds extra sytling rules
+Contained in a separate file for clarity only */
+
+
+/*Adjusts Image Size*/
+.project-entry > img {
+    box-sizing: border-box;
+    width: 50%;
+}
+
+/*Overwrite standards introduced by Bootstrap*/
+hr {
+    border-top: 1px solid #fff;
+}

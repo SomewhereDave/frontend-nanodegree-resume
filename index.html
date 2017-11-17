@@ -23,20 +23,47 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   <title>Resume</title>
 
   <!-- Load the page styles. -->
+  <link href=" css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/addtionalStyles.css" rel="stylesheet">
 
-
+<!-- D3 Library - Added by me. Not project mandatory -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
   <!--
   Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
   -->
-<!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA4bZYvRyppDyYrWT8sPYp8oeKRBKCywvo&libraries=places"></script>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-  <div id="main">
-    <!--
+
+  <!-- Added Navbar from Twitter Bootstrap -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="#header">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#workExperience">Work</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">Projects</a>
+        </li>
+      </<li class="nav-item">
+          <a class="nav-link" href="#education">Education</a>
+        </li>
+      </<li class="nav-item">
+          <a class="nav-link" href="#mapDiv">Living</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">    <!--
     Everything from here to the <script> tag below is the skeleton of your
     website. Your code will add information to each of the sections of the
     resume below. You can pretty easily figure out what each section will
@@ -88,6 +115,14 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
   <!-- More on helper.js in the class -->
   <script src="js/helper.js"></script>
+
+<!-- Twitter Bootstrap Library and Dependencies -->
+ <script src="js/popper.js"></script>
+ <script src="js/bootstrap.js"></script>
+
+<!-- Some extra Javascript to adjust  Twitter Bootstrap Navigation Bar -->
+ <script src="js/additionalJS.js"></script>
+
 
   <!--
   The next line tells the browser where to download the JavaScript file you'll be

@@ -6,49 +6,50 @@ var bio = {
 	name: "David Richarz",
 	role: "Web Analyst",
 	contacts: {
-		mobile: 0123-45678,
+		mobile: "0176-31350901",
 		email: "daricharz@gmail.com",
 		github: "somewhereDave",
 		location: "Mainz, Germany"
 	},
-	pictureURL: "images/me.jpg",
 	welcomeMessage: "Get Riggity Riggity Wrecked",
-	skills: ['Data Analysis', 'Front End Dev', 'Web Analytics', 'Online Marketing']
-}
+	skills: ['Data Analysis', 'Front End Dev', 'Web Analytics', 'Online Marketing'],
+	biopic: "images/me.jpg"
+};
 
 var work = {
 	jobs: [
 		{
 			title: "Web Analyst",
 			employer: "VRM Digital",
-			years: 2,
-			city: "Mainz"
+			dates : "04/2016 - Today",
+			location: "Mainz, RPL, Germany",
+			description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
 		},
 		{
 			title: "Research Assistant",
 			employer: "Faculty Information Systems & Business Administration at Johannes Gutenberg University",
-			years: 0.3,
-			city: "Mainz"
-
+			dates : "11/2015 - 02/2016",
+			location: "Mainz, RPL, Germany",
+			description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
 		}
 	]
-}
+};
 
 var education = {
 	schools: [
 		{
 			school: "University of Passau",
-			city: "Passau , BR, Germany",
+			location: "Passau , BR, Germany",
 			degree: "Bachelors",
-			major: ["Media and Communication", "Business Administration and Economics"],
+			majors: ["Media and Communication", "Business Administration and Economics"],
 			dates: 2011,
 			url: "http://www.uni-passau.de/en/"
 		},
 		{
-			school: "Johannes Gutenberg Universität",
-			city: "Mainz, RPL, Germany",
+			school: "Johannes Gutenberg University",
+			location: "Mainz, RPL, Germany",
 			degree: "Masters",
-			major: ["Media Management"],
+			majors: ["Media Management"],
 			dates: 2015,
 			url: "http://www.uni-mainz.de/eng/index.php"
 		}
@@ -73,53 +74,111 @@ var education = {
 			url: "https://courses.edx.org/certificates/02c8c9e2d9b44287a5528627866fdb28"
 		}
 	]
-}
+};
 
 var projects = {
 	projects: [
 		{
 			title: "Paper on Reward Based Crowdfunding",
-			description: "Research on perception of rewards in reward-based crowdfunding. Based on a custom built Java Webscraper to collect data from Kickstarter crowdfunding projects I analyzed the impact of different reward types on funding behavior."
+			dates: "2017",
+			description: "Research on perception of purchases in reward-based crowdfunding using data collected by a custom built Java Webscraper to collect information from Kickstarter. I analyzed the impact of different reward types on funding behavior giving entrepeneurs a tool to optimize their offerings to the crowd.",
+			images: ["images/graphic1.png", "images/graphic2.png"]
 		}
 	]
+};
+
+bio.display = function() {
+
+	$('#header').prepend(format(HTMLheaderRole, bio.role));
+	$('#header').prepend(format(HTMLheaderName, bio.name));
+	$('#header').append(format(HTMLbioPic, bio.biopic));
+	$('#header').append(format(HTMLwelcomeMsg, bio.welcomeMessage));
+
+	if(bio.contacts !== undefined) {
+		for(var i = 0; i < Object.keys(bio.contacts).length; i++) {
+			var formattedHTMLContacts = HTMLcontactGeneric.replace('%contact%', Object.keys(bio.contacts)[i]);
+			formattedHTMLContacts = formattedHTMLContacts.replace('%data%', Object.values(bio.contacts)[i]);
+			$('#topContacts').append(formattedHTMLContacts);
+			$('#footerContacts').append(formattedHTMLContacts);
+		}
+	}
+
+	if(bio.skills !== undefined) {
+		$('#header').append(HTMLskillsStart);
+		for (var j = 0; j < bio.skills.length; j++) {
+			$('#skills').append(format(HTMLskills, bio.skills[j]));
+		}
+	}
+};
+
+work.display = function() {
+	work.jobs.forEach(function(job) {
+		$('#workExperience').append(HTMLworkStart);
+		$('.work-entry:last').append(
+		format(HTMLworkEmployer, job.employer)+
+		format(HTMLworkTitle, job.title)+
+		format(HTMLworkDates, job.dates)+
+		format(HTMLworkLocation, job.location) +
+		format(HTMLworkDescription, job.description));
+	});
+};
+
+education.display = function() {
+
+	education.schools.forEach(function(school){
+		$('#education').append(HTMLschoolStart);
+
+		$('.education-entry:last').append(format(HTMLschoolName, school["school"]));
+
+		$('.education-entry a:last').append(format(HTMLschoolDegree, school["degree"]));
+
+		$('.education-entry:last').append(format(HTMLschoolDates, school["dates"]));
+
+		$('.education-entry:last').append(format(HTMLschoolLocation, school["location"]));
+
+		var allMajors = "";
+		school["majors"].forEach(function(major, index, array) {
+				allMajors = allMajors + major;
+				if(index !== array.length -1) {
+					allMajors += ', ';
+				}
+		});
+
+		$('.education-entry:last').append(format(HTMLschoolMajor, allMajors));
+	});
+
+	$("#education").append(HTMLonlineClasses);
+	education.onlineCourses.forEach(function(course) {
+		$('#education').append(HTMLschoolStart);
+		$(".education-entry:last").append(format(HTMLonlineTitle, course.name) + format(HTMLonlineSchool, course.school));
+		$(".education-entry:last").append(format(HTMLonlineDates, course.dates));
+		var formattedHTMLonlineURL = HTMLonlineURL.replace('%data%', 'certificate');
+		$(".education-entry:last").append(format(formattedHTMLonlineURL, course.url, '#'));
+	});
+};
+
+projects.display = function () {
+	for(var i = 0; i < projects.projects.length; i++) {
+		$('#projects').append(HTMLprojectStart);
+
+		var formattedHTMLprojectsTitle = HTMLprojectTitle.replace('%data%', projects.projects[i].title);
+		var formattedHTMLprojectsDescription = HTMLprojectDescription.replace('%data%', projects.projects[i].description);
+		$('.project-entry').append(formattedHTMLprojectsTitle, formattedHTMLprojectsDescription);
+		for (var j = 0; j < projects.projects[i].images.length; j++) {
+			$('.project-entry').append(format(HTMLprojectImage, projects.projects[i].images[j]));
+		}
+	}
+};
+
+//Add sections to site
+bio.display();
+education.display();
+work.display();
+projects.display();
+// Add Google Map
+$('#mapDiv').append(googleMap);
+
+//Helper function to reduce code redundancy
+function format(content, value, input = '%data%') {
+	return content.replace(input, value);
 }
-
-
-
-
-
-// formattedHTMLheaderName = HTMLheaderName.replace("%data%", bio.name);
-// formattedHTMLheaderRole = HTMLheaderRole.replace("%data%", bio.role);
-// formattedHTMLmobile = HTMLmobile.replace("%data%", bio.contact.mobile);
-// formattedHTMLemail = HTMLemail.replace("%data%", bio.contact.email);
-// formattedHTMLtwitter = HTMLtwitter.replace("%data%", bio.contact.twitter);
-// formattedHTMLgithub = HTMLgithub.replace("%data%", bio.contact.github);
-// formattedHTMLlocation = HTMLlocation.replace("%data%", bio.contact.location);
-// formattedHTMLbioPic = HTMLbioPic.replace("%data%", bio.pictureURL);
-// formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-// $('#header').append(formattedHTMLheaderName);
-// $('#header').append(formattedHTMLheaderRole);
-// $('#topContacts').append(formattedHTMLmobile);
-// $('#topContacts').append(formattedHTMLemail);
-// $('#topContacts').append(formattedHTMLtwitter);
-// $('#topContacts').append(formattedHTMLgithub);
-// $('#topContacts').append(formattedHTMLlocation);
-// $('#header').append(formattedHTMLbioPic);
-// $('#header').append(formattedHTMLwelcomeMsg);
-// $('#header').append(HTMLskillsStart);
-// for (var i = bio.skills.length - 1; i >= 0; i--) {
-// 	 formattedHTMLskills = HTMLskills.replace("%data%", bio.skills[i]);
-// 	$('#skills').append(formattedHTMLskills);
-// }
-
-// formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%", work.employer);
-// formattedHTMLworkTitle = HTMLworkTitle.replace("%data%", work.title);
-
-// $('#workExperience').append(HTMLworkStart);
-// $('.work-entry').append(formattedHTMLworkEmployer);
-// $('.work-entry a').append(formattedHTMLworkTitle);
-
-// formattedHTMLschoolName = HTMLschoolName.replace("%data%", education.name);
-// $('#education').append(HTMLschoolStart);
-// $('.education-entry').append(formattedHTMLschoolName);
