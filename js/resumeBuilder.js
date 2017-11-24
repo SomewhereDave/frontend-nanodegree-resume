@@ -42,7 +42,7 @@ var education = {
          location: "Passau , BR, Germany",
          degree: "Bachelors",
          majors: ["Media and Communication", "Business Administration and Economics"],
-         dates: 2011,
+         dates: "2011",
          url: "http://www.uni-passau.de/en/"
       },
       {
@@ -50,7 +50,7 @@ var education = {
          location: "Mainz, RPL, Germany",
          degree: "Masters",
          majors: ["Media Management"],
-         dates: 2015,
+         dates: "2015",
          url: "http://www.uni-mainz.de/eng/index.php"
       }
    ],
@@ -58,19 +58,19 @@ var education = {
       {
          name: "The Analytics Edge",
          school: "edx",
-         dates: 2015,
+         dates: "2015",
          url: "https://verify.edx.org/cert/094f053cede34caea7fd9b2388a391fb"
       },
       {
          name: "Statistical Thinking for Data Science and Analytics",
          school: "edx",
-         dates: 2016,
+         dates: "2016",
          url: "https://courses.edx.org/certificates/5930930ebbb8442ba0093baf23a569a1"
       },
       {
          name: "Introduction to Computer Science and Programming Using Python",
          school: "edx",
-         dates: 2016,
+         dates: "2016",
          url: "https://courses.edx.org/certificates/02c8c9e2d9b44287a5528627866fdb28"
       }
    ]
