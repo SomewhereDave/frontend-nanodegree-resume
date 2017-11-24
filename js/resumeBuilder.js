@@ -128,13 +128,13 @@ education.display = function() {
 	education.schools.forEach(function(school){
 		$('#education').append(HTMLschoolStart);
 
-		$('.education-entry:last').append(format(HTMLschoolName, school["school"]));
+		$('.education-entry:last').append(format(HTMLschoolName, school.school));
 
-		$('.education-entry a:last').append(format(HTMLschoolDegree, school["degree"]));
+		$('.education-entry a:last').append(format(HTMLschoolDegree, school.degree));
 
-		$('.education-entry:last').append(format(HTMLschoolDates, school["dates"]));
+		$('.education-entry:last').append(format(HTMLschoolDates, school.dates));
 
-		$('.education-entry:last').append(format(HTMLschoolLocation, school["location"]));
+		$('.education-entry:last').append(format(HTMLschoolLocation, school.location));
 
 		var allMajors = "";
 		school["majors"].forEach(function(major, index, array) {
